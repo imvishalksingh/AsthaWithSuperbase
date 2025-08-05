@@ -13,7 +13,7 @@ const userRoutes = require("./routes/userRoutes");
 require("dotenv").config();
 //const pool = require("./db");
 const supabaseMiddleware = require("./midleware/superbase");
-
+const admissionRoutes = require("./routes/admissions"); // ✅ correct path
 
 const app = express();
 app.use(cors());
@@ -30,6 +30,8 @@ app.use("/api/results", resultRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/salaries", salaryRoutes);
 app.use("/api/export", exportRoutes);
+app.use("/api/admissions", admissionRoutes);
+
 
 
 app.get("/", (req, res) => {
