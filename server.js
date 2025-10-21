@@ -20,8 +20,8 @@ app.use(cors());
 app.use(express.json());
 app.use(supabaseMiddleware);
 
-app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/fees", feesRoutes);

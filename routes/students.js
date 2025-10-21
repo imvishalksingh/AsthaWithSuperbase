@@ -58,14 +58,14 @@ router.get("/", verifyToken, async (req, res) => {
       return res.json(data);
     }
 
-    if (req.user.role === "teacher") {
-      const { data, error } = await supabase.rpc("get_all_students_with_stats");
+    // if (req.user.role === "teacher") {
+    //   const { data, error } = await supabase.rpc("get_all_students_with_stats");
 
-      if (error) throw error;
-      return res.json(data);
-    }
+    //   if (error) throw error;
+    //   return res.json(data);
+    // }
 
-    if (req.user.role === "admin") {
+    if (req.user.role === "admin" || req.user.role === "teacher") {
       const { data, error } = await supabase.from("students").select("*");
       if (error) throw error;
       return res.json(data);
@@ -84,6 +84,10 @@ router.delete("/:id", verifyToken, async (req, res) => {
     return res.status(403).json({ error: "Only admin can delete students" });
   }
 
+
+  router.delete('/:id',(req, res)=>{
+      console.log("Hello");
+  })
   const supabase = req.supabase;
   const studentId = req.params.id;
 
